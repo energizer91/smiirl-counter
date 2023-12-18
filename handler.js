@@ -1,16 +1,17 @@
+const axios = require("axios");
 const cheerio = require("cheerio");
 
-const { COMPANY_ID } = process.env;
+const { COMPANY_ID = '0' } = process.env;
 
 const handler = async () => {
   let document;
 
   try {
-    const res = await fetch(
-      `https://www.linkedin.com/pages-extensions/FollowCompany?id=${COMPANY_ID}&counter=bottom`
+    const html = await axios.get(
+      `https://www.linkedin.com/pages-extensions/FollowCompany?id=${COMPANY_ID}&counter=bottom`,
+      { headers: { "User-Agent": "BetaBeep/0.1" } }
     );
-    const html = await res.text();
-    document = cheerio.load(html);
+    document = cheerio.load(html.data);
   } catch (e) {
     return {
       statusCode: 500,
