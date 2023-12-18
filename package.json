@@ -1,0 +1,10 @@
+{
+  "name": "smiirl-counter",
+  "version": "0.0.1",
+  "description": "smiirl counter webhook",
+  "main": "handler.js",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
