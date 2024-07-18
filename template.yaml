@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  SmiirlCounterFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: handler.handler
+      Runtime: nodejs20.x
+      CodeUri: .
+      Environment:
+        Variables:
+          COMPANY_ID: !Ref CompanyId
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /webhook
+            Method: get
+
+Parameters:
+  CompanyId:
+    Type: String
+    Description: Company ID
