@@ -10,12 +10,11 @@ Resources:
       Environment:
         Variables:
           COMPANY_ID: !Ref CompanyId
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /webhook
-            Method: get
+      FunctionUrlConfig:
+        AuthType: NONE
+        Cors:
+          AllowMethods: '*'
+          AllowOrigins: '*'
 
 Parameters:
   CompanyId:
