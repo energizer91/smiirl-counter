@@ -28,18 +28,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-north-1
 
-      - name: Install AWS SAM CLI
-        run: |
-          pip install aws-sam-cli
-
-      - name: Build SAM project
-        run: |
-          sam build
-
-      - name: Package SAM project
-        run: |
-          sam package --s3-bucket unused --output-template-file packaged.yaml
-
       - name: Deploy to AWS
         run: |
-          sam deploy --template-file template.yaml --stack-name smiirl-counter --capabilities CAPABILITY_IAM --parameter-overrides CompanyId=${{ secrets.COMPANY_ID }}
+          sam deploy --template-file template.yaml --stack-name smiirl-counter --capabilities CAPABILITY_IAM --s3-bucket ${{ secrets.S3_BUCKET }} --parameter-overrides CompanyId=${{ secrets.COMPANY_ID }}
