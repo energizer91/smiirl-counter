@@ -12,9 +12,6 @@ Resources:
           COMPANY_ID: !Ref CompanyId
       FunctionUrlConfig:
         AuthType: NONE
-        Cors:
-          AllowMethods: '*'
-          AllowOrigins: '*'
 
 Parameters:
   CompanyId:
